@@ -59,7 +59,7 @@ def run_one_test(script_path, input_path, output_path):
 
 def run_tests(script_path, io_path, filenames=None):
   """Runs Python script at script_path once for each pair of files 
-     'input###.txt' and 'output###.txt' in director io_path, and compares
+     'input###.txt' and 'output###.txt' in directory io_path, and compares
      'output###.txt' to the contents of a temporary file created by the 
      script at path os.environ[OUTPUT_PATH]. A function that takes a directory
      path as its argument and returns a list of tuples (input_file_path,

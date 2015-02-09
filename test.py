@@ -49,7 +49,12 @@ def print_io(data, test_index, total_tests):
 
 def run_one_test(script_path, input_path, output_path):
   os.environ["OUTPUT_PATH"] = output_path
-  execfile(script_path, { "raw_input": mock_input(input_path).next })
+
+  try:
+    execfile(script_path, { "raw_input": mock_input(input_path).next })
+  except Exception as e: 
+    print "Error: {0}\n".format(e.message)
+
   del os.environ["OUTPUT_PATH"]
 
 def run_tests(script_path, io_path, filenames=None):
@@ -73,7 +78,10 @@ def run_tests(script_path, io_path, filenames=None):
   for index, (i, e, a) in enumerate(filename_tuples):
     run_one_test(script_path, i, a)
     in_lines, exp_lines, a_lines = (get_lines(f) for f in (i, e, a))
-    os.remove(a)
+    try:
+      os.remove(a)
+    except:
+      pass
     print_io([("Input", in_lines), 
               ("Expected output", exp_lines), 
               ("Actual output", a_lines)],

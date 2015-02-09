@@ -50,10 +50,7 @@ def print_io(data, test_index, total_tests):
 def run_one_test(script_path, input_path, output_path):
   os.environ["OUTPUT_PATH"] = output_path
 
-  try:
-    execfile(script_path, { "raw_input": mock_input(input_path).next })
-  except Exception as e: 
-    print "Error: {0}\n".format(e.message)
+  execfile(script_path, { "raw_input": mock_input(input_path).next })
 
   del os.environ["OUTPUT_PATH"]
 
